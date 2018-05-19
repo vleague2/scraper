@@ -1,0 +1,22 @@
+/* PAGE BACKGROUND COLOR */
+body {
+    background-color: rgb(240, 240, 240);
+}
+
+/* NAVBAR BACKGROUND COLOR */
+.navbar {
+    background-color: rgb(70, 14, 70);
+}
+
+/* JUMBOTRON */
+#header-jumbo {
+    background-image: url("/img/news.jpg");
+    background-size: cover;
+    padding-top: 120px;
+    padding-bottom: 120px;
+}
+
+/* SCRAPE BUTTON */
+#scrape {
+    box-shadow: 0px 0px 10px rgb(68, 68, 68);
+}

@@ -1,7 +1,20 @@
 {{> navbar}}
 
+<div class="jumbotron jumbotron-fluid text-center" id="header-jumbo">
+    <button class="btn btn-lg btn-light mt-5 mb-5" id="scrape">Scrape New Articles </button>
+</div>
+
 <div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h2>Articles</h2>
+        </div>
+    </div>
 
-
+    <div class="row">
+        {{#each article}}
+            {{>articles}}
+        {{/each}}
+    </div>
 
 </div>
