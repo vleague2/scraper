@@ -1,7 +1,10 @@
 $("#scrape").on('click', () => {
     console.log('yes');
-    // send ajax post call to server
-    // 
+    $.post( "/", function(data) {
+        console.log("WAPO Scraped");
+        location.reload();
+      });
+
 })
 
 // when user clicks save

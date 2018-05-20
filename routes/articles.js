@@ -6,7 +6,9 @@ const router = express.Router();
 const articleController = require('../controllers/articles.js');
 
 // SET UP HOME ROUTE
-router.get("/", articleController.newArticles)
+router.get("/", articleController.showUnread);
+
+router.post("/", articleController.newArticles)
 
 // route for saving article that grabs id parameter
 
