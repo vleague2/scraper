@@ -20,3 +20,13 @@ body {
 #scrape {
     box-shadow: 0px 0px 10px rgb(68, 68, 68);
 }
+
+/* ARTICLE TITLES */
+.article-title {
+    color: rgb(70, 14, 70);
+    font-size: 20px;
+}
+
+.article-title:hover {
+    color: rgb(70, 14, 70);
+}

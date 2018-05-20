@@ -1,12 +1,12 @@
 <div class="col-sm-6">
-    <div class="card">
+    <div class="card mb-4">
         <div class="card-header">
             {{!-- pull title out of database json and then add the link as an a href--}}
-            {{title}}
+            <a href={{link}} class="article-title">{{title}}</a>
         </div>
         <div class="card-body">
             {{!-- pull teaser text out of database json --}}
-            {{teaser}}
+            <p>{{teaser}}</p>
             <button class="btn btn-secondary">Save Article</button>
         </div>
     </div>      
