@@ -15,7 +15,7 @@ let article = {
         console.log("Finding all unsaved articles...")
 
         // SEARCH DB FOR ALL UNSAVED ARTICLES
-        dbArticle.find({"saved": false})
+        dbArticle.find({"saved": false}).sort({'date': -1})
         .then(dbResponse => {
             console.log('Found unsaved articles...');
 
@@ -61,7 +61,7 @@ let article = {
 
         console.log('Finding all saved articles...');
 
-        dbArticle.find({'saved': true})
+        dbArticle.find({'saved': true}).sort({'date': -1})
         .then(dbResponse => {
             console.log(dbResponse);
 
