@@ -1,16 +1,30 @@
 const mongoose = require("mongoose");
 
 // Require all models
-const db = require("./models");
+const db = require("../models/articles.js");
 
 // require scraper script
-const scraper = require('./scripts/scraper.js');
+const scraper = require('../scripts/scraper.js');
 
 let article = {
-    newArticles: function() {
-        // db.Article.
+    newArticles: function(req, res) {
+        console.log("Scraping...");
+        scraper.scrape();
+        return res.render('index');
+        /*
+        db.find({"saved": false})
+        .then(dbArticle => {
+            console.log(dbArticle);
+            return res.render('index');
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+        */
     }
 }
+
+module.exports = article;
 
 // function for get new articles
 

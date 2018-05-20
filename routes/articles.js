@@ -2,10 +2,11 @@
 const express = require('express');
 const router = express.Router();
 
+// REQUIRED CONTROLLERS
+const articleController = require('../controllers/articles.js');
+
 // SET UP HOME ROUTE
-router.get("/", (req, res) => {
-    res.render('index');
-})
+router.get("/", articleController.newArticles)
 
 // route for saving article that grabs id parameter
 
