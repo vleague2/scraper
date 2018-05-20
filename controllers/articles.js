@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const db = require("./models");
 
 // require scraper script
+const scraper = require('./scripts/scraper.js');
 
 let article = {
     newArticles: function() {
