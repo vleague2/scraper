@@ -14,6 +14,7 @@ router.post("/", articleController.newArticles);
 router.post('/:id', articleController.saveArticle);
 
 // route for saved articles /saved
+router.get('/saved', articleController.viewSaved);
 
 // EXPORT FOR INDEX.JS TO USE
 module.exports = router;

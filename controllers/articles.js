@@ -17,11 +17,12 @@ let article = {
         // SEARCH DB FOR ALL UNSAVED ARTICLES
         dbArticle.find({"saved": false})
         .then(dbResponse => {
-            console.log(dbResponse);
+            console.log('Found unsaved articles...');
 
             // ASSIGN THE RESULTING ARTICLES TO AN OBJECT
             let renderArticles = {articles: dbResponse}
 
+            console.log('Rendering home page...')
             // SEND OBJECT TO HANDLEBARS AND RENDER HOME PAGE
             res.render('index', renderArticles);
         })
@@ -42,28 +43,38 @@ let article = {
         });        
     },
 
+    // FUNCTION TO SAVE AN ARTICLE
     saveArticle: function(req, res) {
         // PULL ID FROM THE REQUEST PARAMS
         let id = req.params.id;
 
-        console.log(id);
-
+        console.log('Finding the article to update...');
         // QUERY DATABASE TO FIND THE ENTRY AND UPDATE
         dbArticle.findOneAndUpdate({_id: id}, {'saved': true}).then(result => {
             console.log(result);
             res.send(200);
+        })
+    },
+
+    //FUNCTION TO VIEW SAVED ARTICLES
+    viewSaved: function(req, res) {
+
+        console.log('Finding all saved articles...');
+
+        dbArticle.find({'saved': true})
+        .then(dbResponse => {
+            console.log(dbResponse);
+
+            // ASSIGN THE RESULTING ARTICLES TO AN OBJECT
+            let renderArticles = {articles: dbResponse}
+
+            res.render('saved', renderArticles);
         })
     }
 }
 
 // EXPORT 
 module.exports = article;
-
-// function to save article
-
-    // update one article as saved
-
-    // send 200 status code
 
 // function to view saved articles
 

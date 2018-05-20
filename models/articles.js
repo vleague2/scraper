@@ -32,17 +32,6 @@ const ArticleSchema = new Schema({
 });
 
 
-// create new article
-
-
-// query db for all saved articles
-
-// update one item in db boolean saved:true
-
-// update one item in db boolean saved:false
-
-
-
 // CREATE MODEL USING MONGOOSE MODEL METHOD
 let Article = mongoose.model("Article", ArticleSchema);
 

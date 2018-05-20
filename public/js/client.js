@@ -21,9 +21,12 @@ $(".save").click(function() {
     console.log(id);
 
     console.log("Saving article...");
+
     // SEND AJAX UPDATE CALL
     $.ajax({
         type: 'POST',
+
+        // SEND IN ID OF BUTTON
         url: '/' + id,
         success: function(data) {
             console.log("Item saved!");
@@ -31,5 +34,4 @@ $(".save").click(function() {
         }
     })
 })
-    // send ajax post call to server with id of the item
-    // .then location.reload
+   

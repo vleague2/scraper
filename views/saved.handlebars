@@ -1,0 +1,16 @@
+{{> navbar}}
+
+<div class="container mt-5">
+    <div class="row mb-5">
+        <div class="col-sm-12 text-center">
+            <h2>Saved Articles</h2>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        {{#each articles}}
+            {{>savedArticles}}
+        {{/each}}
+    </div>
+
+</div>
