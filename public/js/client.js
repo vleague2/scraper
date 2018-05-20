@@ -8,8 +8,7 @@ $("#scrape").on('click', () => {
 
         // RELOAD THE PAGE BC THE SERVER ISN'T DOING IT, FOR WHATEVER REASON...
         location.reload();
-      });
-
+    });
 })
 
 // WHEN THE USER CLICKS ON THE SAVE BUTTON

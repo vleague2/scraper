@@ -52,6 +52,8 @@ let article = {
         // QUERY DATABASE TO FIND THE ENTRY AND UPDATE
         dbArticle.findOneAndUpdate({_id: id}, {'saved': true}).then(result => {
             console.log(result);
+
+            // SEND STATUS CODE THAT EVERYTHING'S GOOD
             res.send(200);
         })
     },
@@ -61,23 +63,24 @@ let article = {
 
         console.log('Finding all saved articles...');
 
+        // QUERY DB FOR SAVED ARTICLES
         dbArticle.find({'saved': true}).sort({'date': -1})
         .then(dbResponse => {
-            console.log(dbResponse);
 
             // ASSIGN THE RESULTING ARTICLES TO AN OBJECT
             let renderArticles = {articles: dbResponse}
 
+            console.log('Rendering saved page...')
+            // SEND OBJECT TO HANDLEBARS
             res.render('saved', renderArticles);
+        })
+        
+        // ERROR HANDLING
+        .catch(err => {
+            console.log(err.message);
         })
     }
 }
 
 // EXPORT 
 module.exports = article;
-
-// function to view saved articles
-
-    // find all saved articles
-    
-    // render handlebars view with db response
