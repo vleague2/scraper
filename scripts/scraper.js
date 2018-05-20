@@ -21,8 +21,10 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 // EXPORT
 module.exports = {
+
     // SCRAPE METHOD
     scrape: function(cb) {
+
         // REQUEST
         console.log("Sending request...")
         request("https://www.washingtonpost.com/business/technology/", (err,response,html) => {
@@ -56,16 +58,16 @@ module.exports = {
                 // console.log(result);
                 
                 // PUSH TO ARRAY
-                console.log('pushing result into array');
+                console.log('Pushing result into array...');
                 results.push(result); 
             })
 
-            console.log("results going into db");
+            console.log("Results going into db...");
 
             // CREATE NEW DATABASE ENTRIES
             db.create(results)
             .then(dbArticle => {
-                console.log("saved to db");
+                console.log("Saved to db!");
 
                 // EXECUTE CALLBACK FUNCTION
                 cb();
@@ -75,8 +77,6 @@ module.exports = {
             .catch(err => {
                 console.log(err);
             })
-
-            
         })
     }
 }

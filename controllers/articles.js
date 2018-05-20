@@ -1,14 +1,16 @@
+// REQUIRE MODULES
 const mongoose = require("mongoose");
 
-// Require all models
+// REQUIRE MODELS
 const db = require("../models/articles.js");
 
-// require scraper script
+// REQUIRE SCRAPER SCRIPT
 const scraper = require('../scripts/scraper.js');
 
+// CREATE OBJECT TO BE EXPORTED
 let article = {
     
-
+    // FUNCTION TO PULL ALL UNREADS FROM DATABASE
     showUnread: function(req, res) {
         console.log("Finding all unsaved articles...")
 
@@ -17,15 +19,20 @@ let article = {
         .then(dbArticles => {
             console.log(dbArticles);
 
+            // ASSIGN THE RESULTING ARTICLES TO AN OBJECT
             let renderArticles = {articles: dbArticles}
 
+            // SEND OBJECT TO HANDLEBARS AND RENDER HOME PAGE
             res.render('index', renderArticles);
         })
+
+        // ERROR HANDLING
         .catch(err => {
             console.log(err.message);
         })
     },
 
+    // FUNCTION TO PULL NEW ARTICLES FROM WAPO
     newArticles: function(req, res) {
         console.log("Scraping...");
 
@@ -36,17 +43,8 @@ let article = {
     }
 }
 
+// EXPORT 
 module.exports = article;
-
-// function for get new articles
-
-    // use scrape script to scrape wapo
-
-    // save all scrapes to DB
-
-    // query db for all unsaved articles
-
-    // render handlebars view with db response
 
 // function to save article
 
