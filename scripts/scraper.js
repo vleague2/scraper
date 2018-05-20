@@ -22,21 +22,28 @@ app.use(bodyParser.urlencoded({extended:true}));
 // EXPORT
 module.exports = {
     // SCRAPE METHOD
-    scrape: function() {
-        // AXIOS REQUEST
-        console.log("Sending Axios request...")
+    scrape: function(cb) {
+        // REQUEST
+        console.log("Sending request...")
         request("https://www.washingtonpost.com/business/technology/", (err,response,html) => {
-            console.log("Finding data on Reddit...")
+            console.log("Finding data on WAPO...")
 
             // ASSIGN DATA TO CHEERIO
             let $ = cheerio.load(html);
 
+            // CREATE AN ARRAY OF RESULTS FOR THE DB LATER
+            let results = [];
+
             console.log("Looping through all story bodies...")
+
             // TARGET STORY-BODY AND RUN A FOR EACH LOOP
             $('div.story-body').each((i, element) => {
-                // CREATE EMPTY RESULT OBJECT
+
                 console.log("Running loop #" + i)
+
+                // CREATE EMPTY RESULT OBJECT
                 let result = {};
+
                 // CREATE RESULT TITLE
                 result.title = $(element).find('div.story-headline').find('h3').find('a').text();
 
@@ -46,20 +53,30 @@ module.exports = {
                 // CREATE RESULT TEASER
                 result.teaser = $(element).find(".story-description").find("p").text();
                 
-                console.log(result);
+                // console.log(result);
                 
-                // CREATE A NEW DATABASE ENTRY
-                db.create(result)
-                .then(dbArticle => {
-                    // CONSOLE LOG THE NEW ENTRY
-                    console.log(dbArticle);
-                })
-                // IFF ERROR, RETURN AS JSON
-                .catch(err => {
-                    console.log(err);
-                })
-                
+                // PUSH TO ARRAY
+                console.log('pushing result into array');
+                results.push(result); 
             })
+
+            console.log("results going into db");
+
+            // CREATE NEW DATABASE ENTRIES
+            db.create(results)
+            .then(dbArticle => {
+                console.log("saved to db");
+
+                // EXECUTE CALLBACK FUNCTION
+                cb();
+            })
+
+            // IF ERROR, RETURN AS JSON
+            .catch(err => {
+                console.log(err);
+            })
+
+            
         })
     }
 }

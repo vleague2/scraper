@@ -7,20 +7,27 @@ const db = require("../models/articles.js");
 const scraper = require('../scripts/scraper.js');
 
 let article = {
+    
     newArticles: function(req, res) {
         console.log("Scraping...");
-        scraper.scrape();
-        return res.render('index');
-        /*
-        db.find({"saved": false})
-        .then(dbArticle => {
-            console.log(dbArticle);
-            return res.render('index');
-        })
-        .catch(err => {
-            console.log(err.message);
-        })
-        */
+
+        // CALL THE SCRAPER FUNCTION AND PASS IN A CALLBACK
+        scraper.scrape(function() {
+            console.log("Finding all unsaved articles...")
+
+            // SEARCH DB FOR ALL UNSAVED ARTICLES
+            db.find({"saved": false})
+            .then(dbArticles => {
+                console.log(dbArticles);
+
+                let renderArticles = {articles: dbArticles}
+
+                return res.render('index', renderArticles);
+            })
+            .catch(err => {
+                console.log(err.message);
+            })     
+        });        
     }
 }
 
