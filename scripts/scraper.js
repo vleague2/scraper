@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const express = require('express');
 
 // REQUIRE MODELS
-const db = require('../models/articles.js');
+const dbArticle = require('../models/articles.js');
 
 // SET UP MONGOOSE
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
@@ -65,7 +65,7 @@ module.exports = {
             console.log("Results going into db...");
 
             // CREATE NEW DATABASE ENTRIES
-            db.create(results)
+            dbArticle.create(results)
             .then(dbArticle => {
                 console.log("Saved to db!");
 

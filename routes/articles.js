@@ -8,9 +8,10 @@ const articleController = require('../controllers/articles.js');
 // SET UP HOME ROUTE
 router.get("/", articleController.showUnread);
 
-router.post("/", articleController.newArticles)
+router.post("/", articleController.newArticles);
 
 // route for saving article that grabs id parameter
+router.post('/:id', articleController.saveArticle);
 
 // route for saved articles /saved
 

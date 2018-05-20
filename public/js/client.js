@@ -12,6 +12,24 @@ $("#scrape").on('click', () => {
 
 })
 
-// when user clicks save
+// WHEN THE USER CLICKS ON THE SAVE BUTTON
+$(".save").click(function() {
+
+    // GRAB ID OF BUTTON CLICKED
+    let id = this.id;
+
+    console.log(id);
+
+    console.log("Saving article...");
+    // SEND AJAX UPDATE CALL
+    $.ajax({
+        type: 'POST',
+        url: '/' + id,
+        success: function(data) {
+            console.log("Item saved!");
+            location.reload();
+        }
+    })
+})
     // send ajax post call to server with id of the item
     // .then location.reload

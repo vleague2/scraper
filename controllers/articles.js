@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 
 // REQUIRE MODELS
-const db = require("../models/articles.js");
+const dbArticle = require("../models/articles.js");
 
 // REQUIRE SCRAPER SCRIPT
 const scraper = require('../scripts/scraper.js');
@@ -15,12 +15,12 @@ let article = {
         console.log("Finding all unsaved articles...")
 
         // SEARCH DB FOR ALL UNSAVED ARTICLES
-        db.find({"saved": false})
-        .then(dbArticles => {
-            console.log(dbArticles);
+        dbArticle.find({"saved": false})
+        .then(dbResponse => {
+            console.log(dbResponse);
 
             // ASSIGN THE RESULTING ARTICLES TO AN OBJECT
-            let renderArticles = {articles: dbArticles}
+            let renderArticles = {articles: dbResponse}
 
             // SEND OBJECT TO HANDLEBARS AND RENDER HOME PAGE
             res.render('index', renderArticles);
@@ -40,6 +40,19 @@ let article = {
         scraper.scrape(function() {
             article.showUnread(req, res); 
         });        
+    },
+
+    saveArticle: function(req, res) {
+        // PULL ID FROM THE REQUEST PARAMS
+        let id = req.params.id;
+
+        console.log(id);
+
+        // QUERY DATABASE TO FIND THE ENTRY AND UPDATE
+        dbArticle.findOneAndUpdate({_id: id}, {'saved': true}).then(result => {
+            console.log(result);
+            res.send(200);
+        })
     }
 }
 
