@@ -1,5 +1,5 @@
 {
-  "name": "WAPO Scraper",
+  "name": "wapo_scraper",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
