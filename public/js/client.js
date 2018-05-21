@@ -44,7 +44,7 @@ $(".add-note").on('click', function() {
     .done(function (data) {
         console.log(data);
         $("#modal").modal('show');
-        $("#save-note").attr('id', data._id);
+        $(".save-note").attr('id', data._id);
     })
 })
 
@@ -52,5 +52,16 @@ $(".add-note").on('click', function() {
 $(".save-note").on('click', function() {
     let id = this.id;
 
-    $.ajax({})
+    console.log($("#add-note").val())
+
+    $.ajax({
+        type: 'POST',
+        url: "/note/" + id,
+        data: {
+            body: $("#add-note").val()
+        }
+    })
+    .done(function (data) {
+        location.reload();
+    })
 })

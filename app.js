@@ -7,9 +7,6 @@ const mongoose = require('mongoose');
 // SET UP EXPRESS
 const app = express();
 
-// REQUIRED ROUTES
-app.use(require("./routes"));
-
 // SET UP HANDLEBARS
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
@@ -20,6 +17,9 @@ app.use(express.static('public'));
 // SET UP BODYPARSER
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
+
+// REQUIRED ROUTES
+app.use(require("./routes"));
 
 // SET UP PORT
 const port = process.env.PORT || 8080;
