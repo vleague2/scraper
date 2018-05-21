@@ -58,6 +58,21 @@ let article = {
         })
     },
 
+    // REMOVE ARTICLE FROM SAVED LIST
+    deleteArticle: function(req, res) {
+        // PULL ID FROM REQUEST PARAMS
+        let id = req.params.id;
+
+        console.log("Finding the article to delete...");
+
+        // FIND THE ARTICLE
+        dbArticle.findOneAndUpdate({_id: id}, {'saved': false}).then(result => {
+            console.log(result);
+
+            res.send(200);
+        })
+    },
+
     //FUNCTION TO VIEW SAVED ARTICLES
     viewSaved: function(req, res) {
 

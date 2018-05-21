@@ -3,13 +3,16 @@ $("#scrape").on('click', () => {
     console.log('Scraping...');
 
     // SEND AN AJAX POST CALL TO THE SERVER
-    $.post( "/", function(data) {
-        console.log("WAPO Scraped");
 
-        // RELOAD THE PAGE BC THE SERVER ISN'T DOING IT, FOR WHATEVER REASON...
+    $.ajax({
+        type: 'POST',
+        url: "/"
+    }).done(function (data) {
+        console.log("WAPO Scraped");  
+        // RELOAD THE PAGE   
         location.reload();
-    });
-})
+    })
+}) 
 
 // WHEN THE USER CLICKS ON THE SAVE BUTTON
 $(".save").click(function() {
@@ -45,6 +48,14 @@ $(".add-note").on('click', function() {
         console.log(data);
         $("#modal").modal('show');
         $(".save-note").attr('id', data._id);
+        // run a loop through the notes
+        // append a card to the modal for each note
+
+        let card = '<div class="card mb-4">';
+        let cardBody = '<div class="card-body">';
+
+
+        $("#notes-holder").append(card + cardBody + '</div></div>')
     })
 })
 
@@ -60,6 +71,19 @@ $(".save-note").on('click', function() {
         data: {
             body: $("#add-note").val()
         }
+    })
+    .done(function (data) {
+        location.reload();
+    })
+})
+
+// WHEN THE USER DELETES THE ARTICLE THEY SAVED
+$(".remove").on('click', function() {
+    let id = this.id;
+
+    $.ajax({
+        type: 'POST',
+        url: "/delete/" + id,
     })
     .done(function (data) {
         location.reload();

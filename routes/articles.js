@@ -16,5 +16,8 @@ router.post('/:id', articleController.saveArticle);
 // ROUTE FOR SAVED ARTICLES 
 router.get('/saved', articleController.viewSaved);
 
+// ROUTE TO UNSAVE ARTICLES
+router.post('/delete/:id', articleController.deleteArticle);
+
 // EXPORT FOR INDEX.JS TO USE
 module.exports = router;

@@ -27,7 +27,7 @@ module.exports = {
 
         // REQUEST
         console.log("Sending request...")
-        request("https://www.washingtonpost.com/business/technology/", (err,response,html) => {
+        request("https://www.washingtonpost.com/politics/", (err,response,html) => {
             console.log("Finding data on WAPO...")
 
             // ASSIGN DATA TO CHEERIO
@@ -65,6 +65,9 @@ module.exports = {
             console.log("Results going into db...");
 
             // CREATE NEW DATABASE ENTRIES
+
+            console.log(results);
+
             dbArticle.create(results)
             .then(dbArticle => {
                 console.log("Saved to db!");
@@ -76,6 +79,7 @@ module.exports = {
             // IF ERROR, RETURN AS JSON
             .catch(err => {
                 console.log(err);
+                cb();
             })
         })
     }
