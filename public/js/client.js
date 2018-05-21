@@ -34,3 +34,23 @@ $(".save").click(function() {
     })
 })
    
+// WHEN USER WANTS TO ADD A NOTE
+$(".add-note").on('click', function() {
+    let id = this.id;
+
+    $.ajax({
+        type: 'GET',
+        url: "/note/" + id})
+    .done(function (data) {
+        console.log(data);
+        $("#modal").modal('show');
+        $("#save-note").attr('id', data._id);
+    })
+})
+
+// WHEN THE USER SAVES THE NOTE THEY MADE
+$(".save-note").on('click', function() {
+    let id = this.id;
+
+    $.ajax({})
+})

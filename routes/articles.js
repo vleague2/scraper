@@ -10,10 +10,10 @@ router.get("/", articleController.showUnread);
 
 router.post("/", articleController.newArticles);
 
-// route for saving article that grabs id parameter
+// ROUTE FOR SAVING ARTICLE THAT GRABS ID PARAMETER
 router.post('/:id', articleController.saveArticle);
 
-// route for saved articles /saved
+// ROUTE FOR SAVED ARTICLES 
 router.get('/saved', articleController.viewSaved);
 
 // EXPORT FOR INDEX.JS TO USE
