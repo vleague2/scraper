@@ -79,8 +79,10 @@ let article = {
         console.log('Finding all saved articles...');
 
         // QUERY DB FOR SAVED ARTICLES
-        dbArticle.find({'saved': true}).sort({'date': -1})
+        dbArticle.find({'saved': true}).sort({'date': -1}).populate('note')
         .then(dbResponse => {
+
+            console.log(dbResponse);
 
             // ASSIGN THE RESULTING ARTICLES TO AN OBJECT
             let renderArticles = {articles: dbResponse}
